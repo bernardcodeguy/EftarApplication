@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         videoList.addAll(myApplication.getVideoList());
 
 
-        String url = "https://docs.google.com/spreadsheets/d/1AFahxOtDLS5T9lahyU6TIm1AEmRP8wud/edit?usp=sharing&ouid=102552447070770472436&rtpof=true&sd=true";
+        String url = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
 
         searchBar = findViewById(R.id.searchBar);
         btnMore = findViewById(R.id.btnMore);
