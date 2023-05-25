@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Eftar</string>
+    <string name="video_head">Top 3 real-time popular videos related to economy</string>
+    <string name="domestic_rank_text">Domestic event ranking</string>
+    <string name="acs_text">ascending order</string>
+    <string name="more">See More</string>
+    <string name="back_info">Please click BACK again to exit.</string>
+</resources>

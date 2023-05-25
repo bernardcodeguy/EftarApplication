@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">에프타르</string>
+    <string name="video_head">경제관련 실시간인기 영상 상위 3위</string>
+    <string name="domestic_rank_text">국내종목 순위</string>
+    <string name="acs_text">상승순</string>
+    <string name="more">더보기V</string>
+    <string name="back_info">종료하려면 뒤쪽에을 다시 클릭하십시오</string>
+</resources>
