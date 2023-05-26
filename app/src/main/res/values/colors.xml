@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#EEEEEE</color>
     <color name="btn_color">#D9D9D9</color>
+    <color name="full_cir_color">#767171</color>
     <color name="splash_bg">#376E40</color>
 </resources>

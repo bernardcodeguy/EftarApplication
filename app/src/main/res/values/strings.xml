@@ -4,5 +4,18 @@
     <string name="domestic_rank_text">Domestic event ranking</string>
     <string name="acs_text">ascending order</string>
     <string name="more">See More</string>
+    <string name="less">See Less</string>
     <string name="back_info">Please click BACK again to exit.</string>
+    <string name="an_summary">Analysis summary</string>
+    <string name="item_details">Item Details</string>
+    <string name="interest_point">The interest rate to maturity is</string>
+    <string name="point2">points.</string>
+    <string name="interest_income_point">The interest income is</string>
+    <string name="credit_point">The credit rating is</string>
+    <string name="maturity">Interest rate to maturity</string>
+    <string name="income">Interest income is </string>
+    <string name="rating">Credit Rating</string>
+
+    <string name="circ_rating">Rating</string>
+    <string name="circ_score">Total score</string>
 </resources>

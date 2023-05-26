@@ -1,18 +1,17 @@
 package com.eftar.eftarapplication;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,48 +19,48 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.eftar.eftarapplication.adapter.RankRecyclerViewAdapter;
 import com.eftar.eftarapplication.adapter.YoutubeRecyclerViewAdapter;
 import com.eftar.eftarapplication.app.MyApplication;
+import com.eftar.eftarapplication.model.Bond;
 import com.eftar.eftarapplication.model.Video;
 
 import com.google.firebase.database.DatabaseReference;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.FileAsyncHttpResponseHandler;
+import com.google.firebase.database.FirebaseDatabase;
 
 
-import java.io.File;
+import org.apache.poi.ss.formula.functions.T;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.WorkbookSettings;
-import jxl.read.biff.BiffException;
-
 
 public class MainActivity extends AppCompatActivity {
-    private EditText searchBar;
+    private AutoCompleteTextView searchBar;
     private Button btnMore;
     private RecyclerView video_recView, rank_recView;
     private ImageView asc_btn;
     List<Video> videoList = new ArrayList<>();
+    List<Bond> bondList = new ArrayList<>();
     //int size = 0;
     boolean doubleBackToExitPressedOnce = false;
     MyApplication myApplication;
-    private RecyclerView.Adapter myAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter youtubeAdapter,rankAdapter;
+    private RecyclerView.LayoutManager youtubeLayoutManager,rankLayoutManager;
 
-    private AsyncHttpClient client;
-    private DatabaseReference myRef;
-    private Workbook workbook;
+    private DatabaseReference myRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://eftar-be95a-default-rtdb.firebaseio.com/").child("eng");
 
-    private List<String> issue_code,issue_name,market_type,bond_type,residual_maturity,credit_rating,price_close;
+    private int numToShow = 5;
+
+    private List<String> suggestionList = new ArrayList<>();
+
+    /*String[] suggests = { "Paries,France", "PA,United States","Parana,Brazil",
+            "Padua,Italy", "Pasadena,CA,United States"};*/
+    String[] suggests2;
+    private ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,64 +70,112 @@ public class MainActivity extends AppCompatActivity {
         videoList.clear();
         videoList.addAll(myApplication.getVideoList());
 
+        String currentLanguageCode = getResources().getConfiguration().locale.getLanguage();
 
-        String url = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
+        // Check if the current language is English
+        /*if (currentLanguageCode.equals("en")) {
+            Toast.makeText(myApplication, "English selected", Toast.LENGTH_SHORT).show();
+        } */
 
-        searchBar = findViewById(R.id.searchBar);
+        searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
         btnMore = findViewById(R.id.btnMore);
         asc_btn = findViewById(R.id.asc_btn);
         video_recView = findViewById(R.id.video_recView);
         rank_recView = findViewById(R.id.rank_recView);
 
 
-        client = new AsyncHttpClient();
-        issue_name = new ArrayList<>();
+        // Show Ranking
+        rankLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rank_recView.setLayoutManager(rankLayoutManager);
+        rankAdapter = new RankRecyclerViewAdapter(bondList, getApplicationContext(),numToShow);
+        rank_recView.setAdapter(rankAdapter);
 
-        client.get(url, new FileAsyncHttpResponseHandler(this) {
+
+
+
+        btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                Toast.makeText(MainActivity.this, "Could not download", Toast.LENGTH_SHORT).show();
-            }
+            public void onClick(View v) {
+                if(numToShow > 5){
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, File file) {
+                    btnMore.setText(R.string.more);
+                    numToShow = 5; // Update the number of items to show
 
+                    // Show Ranking
+                    rankLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rank_recView.setLayoutManager(rankLayoutManager);
+                    rankAdapter = new RankRecyclerViewAdapter(bondList, getApplicationContext(),numToShow);
+                    rank_recView.setAdapter(rankAdapter);
 
-                WorkbookSettings ws = new WorkbookSettings();
-
-                ws.setGCDisabled(true);
-
-                if(file != null){
-                    //Toast.makeText(MainActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                    try {
-                        workbook = Workbook.getWorkbook(file);
-                        Sheet sheet = workbook.getSheet(0);
-
-                        Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
-
-                        for(int i=0; i <sheet.getRows();i++){
-                            Cell[] row = sheet.getRow(i);
-                            issue_name.add(row[1].getContents());
+                    // Notify the adapter of the data set change
+                    rankAdapter.notifyDataSetChanged();
 
 
-                        }
+                }else{
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (BiffException e) {
-                        e.printStackTrace();
-                    }
+                    btnMore.setText(R.string.less);
+                    numToShow = 10; // Update the number of items to show
+
+                    // Show Ranking
+                    rankLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rank_recView.setLayoutManager(rankLayoutManager);
+                    rankAdapter = new RankRecyclerViewAdapter(bondList, getApplicationContext(),numToShow);
+                    rank_recView.setAdapter(rankAdapter);
+
+                    // Notify the adapter of the data set change
+                    rankAdapter.notifyDataSetChanged();
+
                 }
+
 
             }
         });
 
 
 
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        video_recView.setLayoutManager(layoutManager);
-        myAdapter = new YoutubeRecyclerViewAdapter(videoList, getApplicationContext());
-        video_recView.setAdapter(myAdapter);
+        // Set the item click listener to handle selected suggestion
+        searchBar.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedSuggestion = (String) parent.getItemAtPosition(position);
+            Toast.makeText(MainActivity.this, "Selected: " + selectedSuggestion, Toast.LENGTH_SHORT).show();
+        });
+
+
+
+        myApplication.getBondList(new MyApplication.BondListCallback() {
+            @Override
+            public void onBondListAvailable(List<Bond> bonds) {
+
+
+
+                bondList.addAll(bonds);
+                numToShow = 5;
+                // Notify the adapter of the data set change
+                rankAdapter.notifyDataSetChanged();
+
+                for(Bond b : bondList){
+                    suggestionList.add(b.getIs_name());
+                }
+                suggests2 = suggestionList.toArray(new String[suggestionList.size()]);
+                // Create an ArrayAdapter with the suggestions
+                adapter = new ArrayAdapter<>(myApplication, android.R.layout.select_dialog_item, suggests2);
+                searchBar.setThreshold(1);
+
+                // Set the adapter to the AutoCompleteTextView
+                searchBar.setAdapter(adapter);
+            }
+
+            @Override
+            public void onBondListError() {
+                Toast.makeText(myApplication, "Error occured", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        // Show Youtube Videos
+        youtubeLayoutManager = new LinearLayoutManager(getApplicationContext());
+        video_recView.setLayoutManager(youtubeLayoutManager);
+        youtubeAdapter = new YoutubeRecyclerViewAdapter(videoList, getApplicationContext());
+        video_recView.setAdapter(youtubeAdapter);
 
 
         asc_btn.setOnClickListener(new View.OnClickListener() {
@@ -157,8 +204,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 2000);
     }
-
-
 
 
 }

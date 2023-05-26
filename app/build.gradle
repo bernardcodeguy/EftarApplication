@@ -43,9 +43,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database'
-    // https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl
+
     implementation 'org.apache.poi:poi:5.0.0'
-    //implementation 'org.apache.poi:poi-ooxml:5.0.0'
+
     implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
     implementation 'com.loopj.android:android-async-http:1.4.10'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:id="@+id/one_line_rank">
+
+    <TextView
+        android:id="@+id/txtRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="15sp"
+        android:fontFamily="@font/cabin"
+        android:layout_marginEnd="15dp"
+        />
+
+    <TextView
+        android:id="@+id/txtBondName"
+        android:layout_width="190dp"
+        android:maxLines="4"
+        android:layout_height="wrap_content"
+        android:text="KEPCO864"
+        android:textSize="15sp"
+        android:fontFamily="@font/cabin"
+        android:layout_marginEnd="5dp"/>
+
+
+
+    <ImageView
+        android:id="@+id/imgChange"
+        android:layout_marginTop="5dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:srcCompat="@mipmap/up"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KRW"
+        android:textSize="15sp"
+        android:fontFamily="@font/cabin"
+        android:layout_marginEnd="2dp"/>
+
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="9,600.0"
+        android:maxLines="4"
+        android:textSize="15sp"
+        android:fontFamily="@font/cabin"/>
+
+    <ImageView
+        android:id="@+id/imgSelect"
+        android:layout_marginTop="0dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:srcCompat="@mipmap/open"
+        android:layout_marginStart="0dp"/>
+
+</LinearLayout>

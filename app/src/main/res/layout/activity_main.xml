@@ -15,7 +15,18 @@
         android:layout_height="match_parent">
 
 
-        <EditText
+        <!--<EditText
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/background"
+            android:drawableLeft="@drawable/ic_action_name"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />-->
+        <AutoCompleteTextView
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"

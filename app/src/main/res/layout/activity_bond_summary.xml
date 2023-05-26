@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_editor_absoluteX="1dp"
+    app:layout_editor_absoluteY="1dp"
+    tools:context=".BondSummaryActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/background"
+            android:drawableLeft="@drawable/ic_action_name"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchBar">
+
+            <TextView
+                android:id="@+id/txtBondName"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="{Bond Name}"
+                android:maxLines="4"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/cabin"
+                android:text="@string/item_details"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/btnItemDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/img" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBar">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Issue Code:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtIsCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="142553AS"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Market type:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtMarketType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="142553AS"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout2i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price-Close:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtPriceClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="142553AS"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2i">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bond type:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtBondType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142553AS"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Return:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtReturn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142553AS"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trading Volume:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtTradingVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="142553AS"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trading Value:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtTradingValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142553AS"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Residual Maturity:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtResMaturity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142553AS"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Credit rating:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtCreditRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+AAA"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Listed amount:   "
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtListedAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142553AS"
+                android:fontFamily="@font/cabin"
+                android:textSize="18sp" />
+
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

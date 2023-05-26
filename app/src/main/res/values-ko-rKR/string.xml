@@ -5,5 +5,17 @@
     <string name="domestic_rank_text">국내종목 순위</string>
     <string name="acs_text">상승순</string>
     <string name="more">더보기V</string>
+    <string name="less">간단히 보기</string>
     <string name="back_info">종료하려면 뒤쪽에을 다시 클릭하십시오</string>
+    <string name="an_summary">분석요약</string>
+    <string name="item_details">종목상세</string>
+    <string name="interest_point">만기이율</string>
+    <string name="point2">점 입니다.</string>
+    <string name="interest_income_point">이자수익</string>
+    <string name="credit_point">신용등급</string>
+    <string name="maturity">만기이율</string>
+    <string name="income">이자수익</string>
+    <string name="rating">신용등급</string>
+    <string name="circ_rating">등급</string>
+    <string name="circ_score">총점</string>
 </resources>
