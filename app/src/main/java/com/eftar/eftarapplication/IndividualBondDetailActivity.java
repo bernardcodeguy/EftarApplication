@@ -167,8 +167,6 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
 
                     txtMaturityRatePoint.setText(String.valueOf(maturityRatePoint));
 
-
-
                 }
 
 

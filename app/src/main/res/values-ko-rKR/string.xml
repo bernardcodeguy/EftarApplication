@@ -17,7 +17,7 @@
     <string name="income">이자수익</string>
     <string name="rating">신용등급</string>
     <string name="circ_rating">등급</string>
-    <string name="circ_score">총점</string>
+    <string name="circ_score">:총점</string>
     <string name="note">음표:</string>
     <string name="note_content">100만원을 기준으로 만기 수익률을 계산함.</string>
 </resources>
