@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/primary"
     app:layout_editor_absoluteX="1dp"
     app:layout_editor_absoluteY="1dp"
@@ -33,18 +35,33 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchBar">
 
             <TextView
                 android:id="@+id/txtBondName"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin_bold"
                 android:maxLines="4"
-                android:text="{Bond Name}"
+                android:text="@string/loading"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear1i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear1">
 
             <TextView
                 android:id="@+id/txtSummary"
@@ -77,7 +94,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toBottomOf="@id/linear1">
+            app:layout_constraintTop_toBottomOf="@id/linear1i">
 
 
         </LinearLayout>
@@ -97,7 +114,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/circle"
             app:layout_constraintEnd_toEndOf="@+id/circle"
             app:layout_constraintStart_toStartOf="@+id/circle"
-            app:layout_constraintTop_toBottomOf="@+id/linear1" />
+            app:layout_constraintTop_toBottomOf="@+id/linear1i" />
 
 
         <LinearLayout
@@ -164,10 +181,11 @@
         <LinearLayout
             android:id="@+id/linear2"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
+            android:gravity="start"
             android:padding="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/circle">
@@ -190,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="50"
+                    android:text=""
                     android:textSize="18sp" />
 
                 <TextView
@@ -220,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="50"
+                    android:text=""
                     android:textSize="15sp" />
 
                 <TextView
@@ -247,8 +265,8 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:maxLines="4"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/cabin_bold"
@@ -261,7 +279,8 @@
         <LinearLayout
             android:id="@+id/linear3"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
+            android:gravity="start"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
@@ -287,7 +306,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="50"
+                    android:text=""
                     android:textSize="18sp" />
 
                 <TextView
@@ -317,7 +336,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="50"
+                    android:text=""
                     android:textSize="15sp" />
 
                 <TextView
@@ -335,7 +354,8 @@
         <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
+            android:gravity="start"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
@@ -361,7 +381,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="50"
+                    android:text=""
                     android:textSize="18sp" />
 
                 <TextView
@@ -391,7 +411,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
-                    android:text="+AAA"
+                    android:text=""
                     android:textSize="15sp" />
 
             </LinearLayout>

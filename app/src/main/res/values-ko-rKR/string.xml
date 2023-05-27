@@ -20,4 +20,16 @@
     <string name="circ_score">:총점</string>
     <string name="note">음표:</string>
     <string name="note_content">100만원을 기준으로 만기 수익률을 계산함.</string>
+    <string name="loading">로드 중...</string>
+    <string name="issue_code">발행 코드:   </string>
+    <string name="markey_type">시장 유형:   </string>
+    <string name="price_close">종가:   </string>
+    <string name="bond_type">채권형:   </string>
+    <string name="returns">생산하다:   </string>
+    <string name="t_volume">거래량:   </string>
+    <string name="t_value">거래 금액:   </string>
+    <string name="res_maturity">잔존만기:   </string>
+    <string name="c_rating">신용 등급:   </string>
+    <string name="listed_amt">기재된 금액:   </string>
+    <string name="currency">원</string>
 </resources>

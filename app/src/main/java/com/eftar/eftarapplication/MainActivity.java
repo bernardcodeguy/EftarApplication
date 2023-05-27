@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://eftar-be95a-default-rtdb.firebaseio.com/").child("eng");
 
     private int numToShow = 5;
+    private int numToShowVideo = 5;
 
     private List<String> suggestionList = new ArrayList<>();
 
@@ -70,18 +72,16 @@ public class MainActivity extends AppCompatActivity {
         videoList.clear();
         videoList.addAll(myApplication.getVideoList());
 
-        String currentLanguageCode = getResources().getConfiguration().locale.getLanguage();
 
-        // Check if the current language is English
-        /*if (currentLanguageCode.equals("en")) {
-            Toast.makeText(myApplication, "English selected", Toast.LENGTH_SHORT).show();
-        } */
+
+
 
         searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
         btnMore = findViewById(R.id.btnMore);
         asc_btn = findViewById(R.id.asc_btn);
         video_recView = findViewById(R.id.video_recView);
         rank_recView = findViewById(R.id.rank_recView);
+
 
 
         // Show Ranking
@@ -136,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
         // Set the item click listener to handle selected suggestion
         searchBar.setOnItemClickListener((parent, view, position, id) -> {
             String selectedSuggestion = (String) parent.getItemAtPosition(position);
-            Toast.makeText(MainActivity.this, "Selected: " + selectedSuggestion, Toast.LENGTH_SHORT).show();
+            Intent in = new Intent(this, IndividualBondDetailActivity.class);
+            in.putExtra("is_name",selectedSuggestion);
+            startActivity(in);
         });
 
 
@@ -148,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 bondList.addAll(bonds);
+                // Clear focus from the AutoCompleteTextView
+                searchBar.clearFocus();
                 numToShow = 5;
                 // Notify the adapter of the data set change
                 rankAdapter.notifyDataSetChanged();
@@ -174,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         // Show Youtube Videos
         youtubeLayoutManager = new LinearLayoutManager(getApplicationContext());
         video_recView.setLayoutManager(youtubeLayoutManager);
-        youtubeAdapter = new YoutubeRecyclerViewAdapter(videoList, getApplicationContext());
+        youtubeAdapter = new YoutubeRecyclerViewAdapter(videoList, getApplicationContext(),numToShowVideo);
         video_recView.setAdapter(youtubeAdapter);
 
 
@@ -189,7 +193,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
+            finishAffinity();
+            System.exit(0);
             return;
         }
 

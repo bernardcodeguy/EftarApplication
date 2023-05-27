@@ -50,13 +50,14 @@ public class SplashActivity extends AppCompatActivity {
     private String url = "https://www.googleapis.com/youtube/v3/search";
     private String apiKey = "AIzaSyB2EgUv_XCN24zHqmRZvPjC_kbRBirZsj4";
     private String query = "South korea economy videos";
-    private String requestUrl, order;
+    private String requestUrl, order,regionCode,relevanceLanguage;
     private AsyncHttpClient client;
     private DatabaseReference myRefEng = FirebaseDatabase.getInstance().getReferenceFromUrl("https://eftar-be95a-default-rtdb.firebaseio.com/").child("eng");
     private DatabaseReference myRefKor = FirebaseDatabase.getInstance().getReferenceFromUrl("https://eftar-be95a-default-rtdb.firebaseio.com/").child("kor");
     private Workbook workbook;
     String excelUrlEng = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
     String excelUrlKor = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
+    String urlForExcel;
     private RequestQueue queue;
     JsonObjectRequest request;
     List<Video> videoList = new ArrayList<>();
@@ -94,9 +95,24 @@ public class SplashActivity extends AppCompatActivity {
 
             myApplication = (MyApplication) this.getApplication();
 
-            order = "rating";
+            String currentLanguageCode = getResources().getConfiguration().locale.getLanguage();
+            regionCode = "KR";
 
-            requestUrl = url + "?part=snippet&maxResults=" + 3 + "&q=" + query +"&order="+order+ "&key=" + apiKey;
+
+            // Check if the current language is English
+            if (currentLanguageCode.equals("en")) {
+                relevanceLanguage = "en";
+                Toast.makeText(myApplication, "English", Toast.LENGTH_SHORT).show();
+            }else{
+                relevanceLanguage = "ko";
+
+            }
+
+
+
+            order = "date";
+
+            requestUrl = url + "?part=snippet&maxResults=" + 3 + "&q=" + query +"&regionCode="+regionCode+"&relevanceLanguage="+relevanceLanguage+"&order="+order+ "&key=" + apiKey;
 
             queue = Volley.newRequestQueue(this);
 
@@ -104,7 +120,7 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onRequestFinished(Request<Object> request) {
                     if(request.hasHadResponseDelivered()){
-
+                        myApplication.getVideoList().clear();
                         myApplication.setVideoList(videoList);
                         //Toast.makeText(SplashActivity.this, myApplication.getVideoList().size()+" splash videos", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(SplashActivity.this, MainActivity.class);

@@ -2,8 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     app:layout_editor_absoluteX="1dp"
     app:layout_editor_absoluteY="1dp"
     tools:context=".BondSummaryActivity">
@@ -12,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:padding="20dp">
 
         <AutoCompleteTextView
@@ -32,18 +36,31 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchBar">
 
             <TextView
                 android:id="@+id/txtBondName"
-                android:layout_width="190dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="{Bond Name}"
+                android:text="@string/loading"
                 android:maxLines="4"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear1i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear1">
+
 
             <TextView
                 android:id="@+id/txtSummary"
@@ -71,18 +88,19 @@
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBar">
+            app:layout_constraintTop_toBottomOf="@+id/linear1i">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Issue Code:   "
+                android:text="@string/issue_code"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -91,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="142553AS"
+                android:text=""
                 android:textSize="18sp" />
 
 
@@ -113,7 +131,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Market type:   "
+                android:text="@string/markey_type"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -122,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="142553AS"
+                android:text=""
                 android:textSize="18sp" />
 
 
@@ -145,7 +164,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price-Close:   "
+                android:text="@string/price_close"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -154,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="142553AS"
+                android:text=""
                 android:textSize="18sp" />
 
 
@@ -176,7 +203,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bond type:   "
+                android:text="@string/bond_type"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -184,7 +212,7 @@
                 android:id="@+id/txtBondType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="142553AS"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
@@ -207,7 +235,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Return:   "
+                android:text="@string/returns"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -215,7 +244,7 @@
                 android:id="@+id/txtReturn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="142553AS"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
@@ -239,7 +268,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trading Volume:   "
+                android:text="@string/t_volume"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -248,7 +278,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="142553AS"
+                android:text=""
                 android:textSize="18sp" />
 
 
@@ -270,7 +300,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trading Value:   "
+                android:text="@string/t_value"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -278,7 +309,7 @@
                 android:id="@+id/txtTradingValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="142553AS"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
@@ -302,7 +333,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Residual Maturity:   "
+                android:text="@string/res_maturity"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -310,7 +342,8 @@
                 android:id="@+id/txtResMaturity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="142553AS"
+                android:maxLines="4"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
@@ -335,7 +368,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Credit rating:   "
+                android:text="@string/c_rating"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -343,7 +377,7 @@
                 android:id="@+id/txtCreditRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+AAA"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
@@ -369,7 +403,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Listed amount:   "
+                android:text="@string/listed_amt"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/cabin_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cabin_bold"
                 android:textSize="18sp" />
 
@@ -377,7 +420,7 @@
                 android:id="@+id/txtListedAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="142553AS"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 

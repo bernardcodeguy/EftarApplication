@@ -67,6 +67,13 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
         searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
         btnSummary = findViewById(R.id.btnSummary);
 
+        // Set the item click listener to handle selected suggestion
+        searchBar.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedSuggestion = (String) parent.getItemAtPosition(position);
+            Intent in = new Intent(this, IndividualBondDetailActivity.class);
+            in.putExtra("is_name",selectedSuggestion);
+            startActivity(in);
+        });
 
 
        btnSummary.setOnClickListener(e ->{
@@ -78,18 +85,13 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
 
 
-
-
-
-
-
-        Toast.makeText(myApplication, is_name+"", Toast.LENGTH_SHORT).show();
-
         myApplication.getBondList(new MyApplication.BondListCallback() {
             @Override
             public void onBondListAvailable(List<Bond> bonds) {
 
                 bondList.addAll(bonds);
+                // Clear focus from the AutoCompleteTextView
+                searchBar.clearFocus();
                 for(Bond b : bondList){
                     suggestionList.add(b.getIs_name());
                 }
@@ -146,8 +148,7 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
                     maturityRate = maturity * 100;
 
                     // Format the maturityRate to 2 decimal places
-                   String formattedMaturityRate = String.format("%.6f", maturityRate);
-
+                   String formattedMaturityRate = String.format("%.5f", maturityRate);
 
                     txtMaturityPercentage.setText(String.valueOf(formattedMaturityRate));
 
@@ -168,7 +169,6 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
                     txtMaturityRatePoint.setText(String.valueOf(maturityRatePoint));
 
                 }
-
 
 
                 txtInterestIncomePercentage.setText(String.valueOf(bond.getReturns()));

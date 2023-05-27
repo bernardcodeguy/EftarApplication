@@ -24,12 +24,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MyApplication extends Application{
     private static List<Video> videoList = new ArrayList<>();
     private static List<Bond> bondList = new ArrayList<>();
     String excelUrlEng = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
-    String excelUrlKor = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
+    String excelUrlKor = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/filek.xls";
+    String url;
     private AsyncHttpClient client;
     private Workbook workbook;
     public List<Video> getVideoList() {
@@ -42,57 +44,62 @@ public class MyApplication extends Application{
 
 
     public void getBondList(final BondListCallback callback) {
-        client = new AsyncHttpClient();
 
-        client.get(excelUrlKor, new FileAsyncHttpResponseHandler(getApplicationContext()) {
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                Toast.makeText(getApplicationContext(), "Your device might not be connected to internet", Toast.LENGTH_SHORT).show();
-                callback.onBondListError();
-            }
+        String currentLanguageCode = getResources().getConfiguration().locale.getLanguage();
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, File file) {
-                WorkbookSettings ws = new WorkbookSettings();
+        // Check if the current language is English
+        if (currentLanguageCode.equals("en")) {
+            client = new AsyncHttpClient();
 
-                ws.setGCDisabled(true);
+            client.get(excelUrlEng, new FileAsyncHttpResponseHandler(getApplicationContext()) {
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+                    Toast.makeText(getApplicationContext(), "Your device might not be connected to internet", Toast.LENGTH_SHORT).show();
+                    callback.onBondListError();
+                }
 
-                if(file != null){
-                    try {
-                        workbook = workbook.getWorkbook(file);
-                        Sheet sheet = workbook.getSheet(0);
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, File file) {
+                    WorkbookSettings ws = new WorkbookSettings();
 
-                        bondList.clear();
-                        for(int i=0; i <sheet.getRows();i++){
+                    ws.setGCDisabled(true);
 
-                            Cell[] row = sheet.getRow(i);
+                    if(file != null){
+                        try {
+                            workbook = workbook.getWorkbook(file);
+                            Sheet sheet = workbook.getSheet(0);
 
-                            boolean containsOnlyNumerals = row[0].getContents().matches("\\d+");
+                            bondList.clear();
+                            for(int i=0; i <sheet.getRows();i++){
 
-                            if (!containsOnlyNumerals) {
-                                continue;
-                            }
+                                Cell[] row = sheet.getRow(i);
 
-                            Bond bond = new Bond();
-                            bond.setRank(Integer.parseInt(row[0].getContents()));
-                            bond.setIs_code(row[1].getContents());
-                            bond.setIs_name(row[2].getContents());
-                            bond.setMarket_type(row[3].getContents());
-                            bond.setBond_type(row[4].getContents());
-                            bond.setPrice(convertToDouble(row[5].getContents()));
+                                boolean containsOnlyNumerals = row[0].getContents().matches("\\d+");
 
-                            if(!row[6].getContents().isEmpty()){
-                                bond.setChange(convertToDouble(row[6].getContents()));
-                            }
+                                if (!containsOnlyNumerals) {
+                                    continue;
+                                }
 
-                            bond.setReturns(convertToDouble(row[7].getContents()));
-                            bond.setTrading_volume(convertToDouble(row[8].getContents()));
-                            bond.setTrading_value(convertToDouble(row[9].getContents()));
-                            bond.setRes_maturity(row[10].getContents());
-                            bond.setCredit_rating(row[11].getContents());
-                            bond.setListed_amt(convertToDouble(row[12].getContents()));
+                                Bond bond = new Bond();
+                                bond.setRank(Integer.parseInt(row[0].getContents()));
+                                bond.setIs_code(row[1].getContents());
+                                bond.setIs_name(row[2].getContents());
+                                bond.setMarket_type(row[3].getContents());
+                                bond.setBond_type(row[4].getContents());
+                                bond.setPrice(convertToDouble(row[5].getContents()));
 
-                            bondList.add(bond);
+                                if(!row[6].getContents().isEmpty()){
+                                    bond.setChange(convertToDouble(row[6].getContents()));
+                                }
+
+                                bond.setReturns(convertToDouble(row[7].getContents()));
+                                bond.setTrading_volume(convertToDouble(row[8].getContents()));
+                                bond.setTrading_value(convertToDouble(row[9].getContents()));
+                                bond.setRes_maturity(row[10].getContents());
+                                bond.setCredit_rating(row[11].getContents());
+                                bond.setListed_amt(convertToDouble(row[12].getContents()));
+
+                                bondList.add(bond);
 
                             /*myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -120,21 +127,119 @@ public class MyApplication extends Application{
                                 }
                             });*/
 
-                            //Toast.makeText(MyApplication.this, bondList.size()+" bonds", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MyApplication.this, bondList.size()+" bonds", Toast.LENGTH_SHORT).show();
 
+                            }
+                            callback.onBondListAvailable(bondList);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (BiffException e) {
+                            e.printStackTrace();
                         }
-                        callback.onBondListAvailable(bondList);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (BiffException e) {
-                        e.printStackTrace();
                     }
+
                 }
 
-            }
+            });
+        }else{
+            client = new AsyncHttpClient();
 
-        });
+            client.get(excelUrlKor, new FileAsyncHttpResponseHandler(getApplicationContext()) {
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+                    Toast.makeText(getApplicationContext(), "Your device might not be connected to internet", Toast.LENGTH_SHORT).show();
+                    callback.onBondListError();
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, File file) {
+                    WorkbookSettings ws = new WorkbookSettings();
+
+                    ws.setGCDisabled(true);
+
+                    if(file != null){
+                        try {
+                            workbook = workbook.getWorkbook(file);
+                            Sheet sheet = workbook.getSheet(0);
+
+                            bondList.clear();
+                            for(int i=0; i <sheet.getRows();i++){
+
+                                Cell[] row = sheet.getRow(i);
+
+                                boolean containsOnlyNumerals = row[0].getContents().matches("\\d+");
+
+                                if (!containsOnlyNumerals) {
+                                    continue;
+                                }
+
+                                Bond bond = new Bond();
+                                bond.setRank(Integer.parseInt(row[0].getContents()));
+                                bond.setIs_code(row[1].getContents());
+                                bond.setIs_name(row[2].getContents());
+                                bond.setMarket_type(row[3].getContents());
+                                bond.setBond_type(row[4].getContents());
+                                bond.setPrice(convertToDouble(row[5].getContents()));
+
+                                if(!row[6].getContents().isEmpty()){
+                                    bond.setChange(convertToDouble(row[6].getContents()));
+                                }
+
+                                bond.setReturns(convertToDouble(row[7].getContents()));
+                                bond.setTrading_volume(convertToDouble(row[8].getContents()));
+                                bond.setTrading_value(convertToDouble(row[9].getContents()));
+                                bond.setRes_maturity(row[10].getContents());
+                                bond.setCredit_rating(row[11].getContents());
+                                bond.setListed_amt(convertToDouble(row[12].getContents()));
+
+                                bondList.add(bond);
+
+                            /*myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                                    myRef.child(row[0].getContents()).child("rank").setValue(row[0].getContents());
+                                    myRef.child(row[0].getContents()).child("is_code").setValue(row[1].getContents());
+                                    myRef.child(row[0].getContents()).child("is_name").setValue(row[2].getContents());
+                                    myRef.child(row[0].getContents()).child("market_type").setValue(row[3].getContents());
+                                    myRef.child(row[0].getContents()).child("bond_type").setValue(row[4].getContents());
+                                    myRef.child(row[0].getContents()).child("price").setValue(row[5].getContents());
+                                    myRef.child(row[0].getContents()).child("change").setValue(row[6].getContents());
+                                    myRef.child(row[0].getContents()).child("returns").setValue(row[7].getContents());
+                                    myRef.child(row[0].getContents()).child("trading_volume").setValue(row[8].getContents());
+                                    myRef.child(row[0].getContents()).child("trading_value").setValue(row[9].getContents());
+                                    myRef.child(row[0].getContents()).child("res_maturity").setValue(row[10].getContents());
+                                    myRef.child(row[0].getContents()).child("crdeit_rating").setValue(row[11].getContents());
+                                    myRef.child(row[0].getContents()).child("listed_amt").setValue(row[12].getContents());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });*/
+
+                                //Toast.makeText(MyApplication.this, bondList.size()+" bonds", Toast.LENGTH_SHORT).show();
+
+                            }
+                            callback.onBondListAvailable(bondList);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (BiffException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+            });
+        }
+
+
+
     }
 
 

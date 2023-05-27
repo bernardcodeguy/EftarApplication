@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/txtBondName"
-        android:layout_width="190dp"
+        android:layout_width="140dp"
         android:maxLines="4"
         android:layout_height="wrap_content"
         android:text="KEPCO864"
@@ -48,9 +48,9 @@
 
     <TextView
         android:id="@+id/txtPrice"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="9,600.0"
+        android:text="9,600"
         android:maxLines="4"
         android:textSize="15sp"
         android:fontFamily="@font/cabin"/>
@@ -61,6 +61,6 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:srcCompat="@mipmap/open"
-        android:layout_marginStart="0dp"/>
+        android:layout_marginStart="5dp"/>
 
 </LinearLayout>
