@@ -3,6 +3,7 @@ package com.eftar.eftarapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ArrayAdapter;
@@ -34,7 +35,10 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
     private String is_name;
     int i = 0;
     Bond bond;
-    int score;
+    double principal = 1000000;
+    double maturityRate;
+    double redemption;
+    int score,creditRatingPoint,maturityRatePoint,interestRatePoint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,23 +77,9 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progress_bar);
 
-        score = 75;
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // set the limitations for the numeric
-                // text under the progress bar
-                if (i <= score) {
-                    progressBar.setProgress(i);
-                    i++;
-                    handler.postDelayed(this, 0);
-                } else {
-                    handler.removeCallbacks(this);
-                }
-            }
-        }, 0);
+
+
 
 
 
@@ -118,7 +108,111 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(myApplication, bond.getCredit_rating()+": Credit Rating", Toast.LENGTH_SHORT).show();
+                if(!bond.getIs_name().isEmpty()){
+                    txtBondName.setText(bond.getIs_name());
+                }
+
+                if(!bond.getCredit_rating().isEmpty()){
+                    txtCreditRating.setText(bond.getCredit_rating());
+
+
+                    if(bond.getCredit_rating().equals("A") || bond.getCredit_rating().equals("A-") || bond.getCredit_rating().equals("A+")){
+                        creditRatingPoint = 70;
+                    }else if(bond.getCredit_rating().equals("AA") || bond.getCredit_rating().equals("AA-") || bond.getCredit_rating().equals("AA+")){
+                        creditRatingPoint = 80;
+                    }else if(bond.getCredit_rating().equals("AAA") || bond.getCredit_rating().equals("AAA-") || bond.getCredit_rating().equals("AAA+")){
+                        creditRatingPoint = 100;
+                    }else if(bond.getCredit_rating().equals("BBB") || bond.getCredit_rating().equals("BBB-") || bond.getCredit_rating().equals("BBB+")){
+                        creditRatingPoint = 60;
+                    }else if(bond.getCredit_rating().equals("BB") || bond.getCredit_rating().equals("BB-") || bond.getCredit_rating().equals("BB+")){
+                        creditRatingPoint = 50;
+                    }else if(bond.getCredit_rating().equals("B") || bond.getCredit_rating().equals("B-") || bond.getCredit_rating().equals("B+")){
+                        creditRatingPoint = 40;
+                    }else if(bond.getCredit_rating().equals("CCC") || bond.getCredit_rating().equals("CCC-") || bond.getCredit_rating().equals("CCC+")){
+                        creditRatingPoint = 30;
+                    }else if(bond.getCredit_rating().equals("CC") || bond.getCredit_rating().equals("CC-") || bond.getCredit_rating().equals("CC+")){
+                        creditRatingPoint = 20;
+                    }else if(bond.getCredit_rating().equals("C") || bond.getCredit_rating().equals("C-") || bond.getCredit_rating().equals("C+")){
+                        creditRatingPoint = 10;
+                    }
+
+                    txtCreditRatingPoint.setText(String.valueOf(creditRatingPoint));
+
+
+                    redemption = bond.getReturns() + principal;
+
+                    double maturity = (redemption - principal) / (principal);
+
+                    maturityRate = maturity * 100;
+
+                    // Format the maturityRate to 2 decimal places
+                   String formattedMaturityRate = String.format("%.6f", maturityRate);
+
+
+                    txtMaturityPercentage.setText(String.valueOf(formattedMaturityRate));
+
+                    if(maturityRate >= 5){
+                        maturityRatePoint = 100;
+                    }else  if(maturityRate >= 4){
+                        maturityRatePoint = 80;
+                    }else  if(maturityRate >= 3){
+                        maturityRatePoint = 70;
+                    }else  if(maturityRate >= 2){
+                        maturityRatePoint = 60;
+                    }else  if(maturityRate >= 1){
+                        maturityRatePoint = 40;
+                    }else  if(maturityRate < 1){
+                        maturityRatePoint = 20;
+                    }
+
+                    txtMaturityRatePoint.setText(String.valueOf(maturityRatePoint));
+
+
+
+                }
+
+
+
+                txtInterestIncomePercentage.setText(String.valueOf(bond.getReturns()));
+
+                if(bond.getReturns() >= 5 ){
+                    interestRatePoint = 100;
+                }else if(bond.getReturns() < 5  && bond.getReturns() > 4){
+                    interestRatePoint = 80;
+                }else if(bond.getReturns() < 4  && bond.getReturns() > 3){
+                    interestRatePoint = 70;
+                }else if(bond.getReturns() < 3  && bond.getReturns() > 2){
+                    interestRatePoint = 60;
+                }else if(bond.getReturns() < 2  && bond.getReturns() > 1){
+                    interestRatePoint = 50;
+                }else if(bond.getReturns() < 1){
+                    interestRatePoint = 20;
+                }
+
+            txtInterestIncomePoint.setText(String.valueOf(interestRatePoint));
+
+
+
+
+                score = (int) ((int) ( maturityRatePoint * 0.4) + (creditRatingPoint * 0.3) + (interestRatePoint * 0.3));
+
+                txtCircScore.setText(String.valueOf(score));
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // set the limitations for the numeric
+                        // text under the progress bar
+                        if (i <= score) {
+                            progressBar.setProgress(i);
+                            i++;
+                            handler.postDelayed(this, 0);
+                        } else {
+                            handler.removeCallbacks(this);
+                        }
+                    }
+                }, 0);
 
             }
 
