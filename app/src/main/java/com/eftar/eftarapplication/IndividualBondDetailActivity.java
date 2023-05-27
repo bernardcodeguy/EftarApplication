@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eftar.eftarapplication.app.MyApplication;
@@ -19,35 +20,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IndividualBondDetailActivity extends AppCompatActivity {
+    private TextView txtBondName,txtCircRating,txtCircScore,txtMaturityRatePoint,txtMaturityPercentage,txtInterestIncomePoint,txtInterestIncomePercentage;
+    private TextView txtCreditRatingPoint,txtCreditRating;
     private AutoCompleteTextView searchBar;
-
-    List<Bond> bondList = new ArrayList<>();
-    boolean doubleBackToExitPressedOnce = false;
-    MyApplication myApplication;
     private ImageView btnSummary;
     private ProgressBar progressBar;
+
+    List<Bond> bondList = new ArrayList<>();
+    MyApplication myApplication;
     private List<String> suggestionList = new ArrayList<>();
     String[] suggests2;
     private ArrayAdapter<String> adapter;
     private String is_name;
     int i = 0;
-
+    Bond bond;
     int score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_bond_detail);
 
-        myApplication = (MyApplication) this.getApplication();
-
-        searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
-        btnSummary = findViewById(R.id.btnSummary);
         Intent intent = getIntent();
-
-
         if(intent.getStringExtra("is_name") != null){
             is_name = intent.getStringExtra("is_name");
         }
+
+        myApplication = (MyApplication) this.getApplication();
+
+        txtBondName = findViewById(R.id.txtBondName);
+        txtCircRating = findViewById(R.id.txtCircRating);
+        txtCircScore = findViewById(R.id.txtCircScore);
+        txtMaturityRatePoint = findViewById(R.id.txtMaturityRatePoint);
+        txtMaturityPercentage = findViewById(R.id.txtMaturityPercentage);
+        txtInterestIncomePoint = findViewById(R.id.txtInterestIncomePoint);
+        txtInterestIncomePercentage = findViewById(R.id.txtInterestIncomePercentage);
+        txtCreditRatingPoint = findViewById(R.id.txtCreditRatingPoint);
+        txtCreditRating = findViewById(R.id.txtCreditRating);
+
+
+
+
+        searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
+        btnSummary = findViewById(R.id.btnSummary);
 
 
 
@@ -81,8 +95,6 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
 
         Toast.makeText(myApplication, is_name+"", Toast.LENGTH_SHORT).show();
 
-
-
         myApplication.getBondList(new MyApplication.BondListCallback() {
             @Override
             public void onBondListAvailable(List<Bond> bonds) {
@@ -98,6 +110,16 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
 
                 // Set the adapter to the AutoCompleteTextView
                 searchBar.setAdapter(adapter);
+
+
+                for(Bond b : bondList){
+                    if(b.getIs_name().equals(is_name)){
+                        bond = b;
+                    }
+                }
+
+                Toast.makeText(myApplication, bond.getCredit_rating()+": Credit Rating", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

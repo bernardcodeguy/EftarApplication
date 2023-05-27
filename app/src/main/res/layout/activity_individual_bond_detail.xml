@@ -38,9 +38,10 @@
 
             <TextView
                 android:id="@+id/txtBondName"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin"
+                android:fontFamily="@font/cabin_bold"
+                android:maxLines="4"
                 android:text="{Bond Name}"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -49,7 +50,7 @@
                 android:id="@+id/txtSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="0dp"
                 android:fontFamily="@font/cabin"
                 android:text="@string/an_summary"
                 android:textColor="@color/black"
@@ -129,9 +130,6 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,66 +161,10 @@
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/txtGradePCir"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="235dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/grade1_shape"
-            android:fontFamily="@font/cabin_bold"
-            android:text="B"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/progress_bar" />
-
-        <TextView
-            android:id="@+id/txtGradeFullCir"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/grade1_shape"
-            android:fontFamily="@font/cabin_bold"
-            android:text="A"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/progress_bar" />
-
-
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello There"
-            android:textColor="@color/white"
-            android:layout_marginStart="150dp"
-            app:layout_constraintBottom_toBottomOf="@+id/circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/circle" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello There"
-            android:textColor="@color/white"
-            android:layout_marginStart="150dp"
-            app:layout_constraintBottom_toBottomOf="@+id/circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/circle" />-->
-
-
         <LinearLayout
             android:id="@+id/linear2"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
@@ -244,7 +186,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/txtPoint"
+                    android:id="@+id/txtMaturityRatePoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
@@ -274,7 +216,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtPercentage"
+                    android:id="@+id/txtMaturityPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
@@ -290,13 +232,36 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:text="@string/note"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:maxLines="4"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:text="@string/note_content"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear3"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
@@ -318,7 +283,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/txtPoint2"
+                    android:id="@+id/txtInterestIncomePoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
@@ -348,7 +313,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtPercentage1"
+                    android:id="@+id/txtInterestIncomePercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
@@ -370,7 +335,7 @@
         <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"
             android:orientation="vertical"
@@ -392,7 +357,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/txtPoint3"
+                    android:id="@+id/txtCreditRatingPoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"
@@ -422,7 +387,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtPercentage2"
+                    android:id="@+id/txtCreditRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin_bold"

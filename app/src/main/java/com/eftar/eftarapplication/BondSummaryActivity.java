@@ -32,14 +32,11 @@ public class BondSummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bond_summary);
 
-
         myApplication = (MyApplication) this.getApplication();
 
         searchBar = (AutoCompleteTextView) findViewById(R.id.searchBar);
 
         btnItemDetails = findViewById(R.id.btnItemDetails);
-
-
 
         Intent intent = getIntent();
 

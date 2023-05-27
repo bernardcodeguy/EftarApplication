@@ -18,4 +18,6 @@
 
     <string name="circ_rating">Rating</string>
     <string name="circ_score">Total score</string>
+    <string name="note">Note:</string>
+    <string name="note_content">Yield to maturity is calculated based on 1 million won.</string>
 </resources>

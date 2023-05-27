@@ -44,7 +44,7 @@ public class MyApplication extends Application{
     public void getBondList(final BondListCallback callback) {
         client = new AsyncHttpClient();
 
-        client.get(excelUrlEng, new FileAsyncHttpResponseHandler(getApplicationContext()) {
+        client.get(excelUrlKor, new FileAsyncHttpResponseHandler(getApplicationContext()) {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
                 Toast.makeText(getApplicationContext(), "Your device might not be connected to internet", Toast.LENGTH_SHORT).show();

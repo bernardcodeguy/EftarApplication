@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">에프타르</string>
+    <string name="app_name">에프탈</string>
     <string name="video_head">경제관련 실시간인기 영상 상위 3위</string>
     <string name="domestic_rank_text">국내종목 순위</string>
     <string name="acs_text">상승순</string>
@@ -18,4 +18,6 @@
     <string name="rating">신용등급</string>
     <string name="circ_rating">등급</string>
     <string name="circ_score">총점</string>
+    <string name="note">음표:</string>
+    <string name="note_content">100만원을 기준으로 만기 수익률을 계산함.</string>
 </resources>
