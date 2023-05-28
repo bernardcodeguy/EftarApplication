@@ -1,14 +1,9 @@
 package com.eftar.eftarapplication.app;
 
 import android.app.Application;
-import android.content.Intent;
-import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.eftar.eftarapplication.MainActivity;
-import com.eftar.eftarapplication.SplashActivity;
+import com.eftar.eftarapplication.R;
 import com.eftar.eftarapplication.model.Bond;
 import com.eftar.eftarapplication.model.Video;
 import jxl.Cell;
@@ -24,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class MyApplication extends Application{
     private static List<Video> videoList = new ArrayList<>();
@@ -54,7 +49,7 @@ public class MyApplication extends Application{
             client.get(excelUrlEng, new FileAsyncHttpResponseHandler(getApplicationContext()) {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                    Toast.makeText(getApplicationContext(), "Your device might not be connected to internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                     callback.onBondListError();
                 }
 
@@ -127,7 +122,6 @@ public class MyApplication extends Application{
                                 }
                             });*/
 
-                                //Toast.makeText(MyApplication.this, bondList.size()+" bonds", Toast.LENGTH_SHORT).show();
 
                             }
                             callback.onBondListAvailable(bondList);
@@ -194,35 +188,6 @@ public class MyApplication extends Application{
                                 bond.setListed_amt(convertToDouble(row[12].getContents()));
 
                                 bondList.add(bond);
-
-                            /*myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                                    myRef.child(row[0].getContents()).child("rank").setValue(row[0].getContents());
-                                    myRef.child(row[0].getContents()).child("is_code").setValue(row[1].getContents());
-                                    myRef.child(row[0].getContents()).child("is_name").setValue(row[2].getContents());
-                                    myRef.child(row[0].getContents()).child("market_type").setValue(row[3].getContents());
-                                    myRef.child(row[0].getContents()).child("bond_type").setValue(row[4].getContents());
-                                    myRef.child(row[0].getContents()).child("price").setValue(row[5].getContents());
-                                    myRef.child(row[0].getContents()).child("change").setValue(row[6].getContents());
-                                    myRef.child(row[0].getContents()).child("returns").setValue(row[7].getContents());
-                                    myRef.child(row[0].getContents()).child("trading_volume").setValue(row[8].getContents());
-                                    myRef.child(row[0].getContents()).child("trading_value").setValue(row[9].getContents());
-                                    myRef.child(row[0].getContents()).child("res_maturity").setValue(row[10].getContents());
-                                    myRef.child(row[0].getContents()).child("crdeit_rating").setValue(row[11].getContents());
-                                    myRef.child(row[0].getContents()).child("listed_amt").setValue(row[12].getContents());
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });*/
-
-                                //Toast.makeText(MyApplication.this, bondList.size()+" bonds", Toast.LENGTH_SHORT).show();
-
                             }
                             callback.onBondListAvailable(bondList);
 
@@ -237,9 +202,6 @@ public class MyApplication extends Application{
 
             });
         }
-
-
-
     }
 
 

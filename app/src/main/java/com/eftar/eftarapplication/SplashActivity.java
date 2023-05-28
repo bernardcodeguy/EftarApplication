@@ -73,24 +73,9 @@ public class SplashActivity extends AppCompatActivity {
 
         btnClose = findViewById(R.id.btnClose);
 
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-
-        if (!isConnected) {
-            Toast.makeText(myApplication, "Device not connected to internet", Toast.LENGTH_SHORT).show();
-
-            btnClose.setVisibility(View.VISIBLE);
 
 
-            btnClose.setOnClickListener(e -> {
-                finishAffinity();
-                System.exit(0);
-            });
-        } else {
-
+        if (isNetworkAvailable()) {
             btnClose.setVisibility(View.GONE);
 
             myApplication = (MyApplication) this.getApplication();
@@ -102,10 +87,8 @@ public class SplashActivity extends AppCompatActivity {
             // Check if the current language is English
             if (currentLanguageCode.equals("en")) {
                 relevanceLanguage = "en";
-                Toast.makeText(myApplication, "English", Toast.LENGTH_SHORT).show();
             }else{
                 relevanceLanguage = "ko";
-
             }
 
 
@@ -162,8 +145,6 @@ public class SplashActivity extends AppCompatActivity {
                                         }
 
 
-
-
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -179,10 +160,30 @@ public class SplashActivity extends AppCompatActivity {
                     queue.add(request);
                 }
             }).start();
-        }
 
 
+
+
+        } else {
+
+            Toast.makeText(myApplication, R.string.no_internet, Toast.LENGTH_SHORT).show();
+
+            btnClose.setVisibility(View.VISIBLE);
+
+            btnClose.setOnClickListener(e -> {
+                finishAffinity();
+                System.exit(0);
+            });
         }
+
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
  }
 

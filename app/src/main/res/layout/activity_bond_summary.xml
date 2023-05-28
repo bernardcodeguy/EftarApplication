@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/background"
-            android:drawableLeft="@drawable/ic_action_name"
+            android:drawableLeft="@drawable/ic_s"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/currency"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="@font/cabin_bold"
+                android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
             <TextView
@@ -413,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/currency"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="@font/cabin_bold"
+                android:fontFamily="@font/cabin"
                 android:textSize="18sp" />
 
             <TextView

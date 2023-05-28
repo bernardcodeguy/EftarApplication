@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/background"
-            android:drawableLeft="@drawable/ic_action_name"
+            android:drawableLeft="@drawable/ic_s"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -128,6 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/circle">
 
+
             <TextView
                 android:id="@+id/txtCircRating"
                 android:layout_width="wrap_content"
@@ -141,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin_bold"
-                android:text="@string/circ_rating"
+                android:text="@string/grade"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -187,6 +188,7 @@
             android:orientation="vertical"
             android:gravity="start"
             android:padding="20dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/circle">
 
@@ -279,14 +281,14 @@
         <LinearLayout
             android:id="@+id/linear3"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:gravity="start"
-            android:layout_marginTop="50dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="4dp"
             android:background="@drawable/points_back"
+            android:gravity="start"
             android:orientation="vertical"
             android:padding="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear2">
+            app:layout_constraintTop_toTopOf="@+id/linear2">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -354,7 +356,7 @@
         <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="120dp"
             android:gravity="start"
             android:layout_marginTop="50dp"
             android:background="@drawable/points_back"

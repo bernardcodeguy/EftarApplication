@@ -4,6 +4,7 @@
     <string name="video_head">경제관련 실시간인기 영상 상위 3위</string>
     <string name="domestic_rank_text">국내종목 순위</string>
     <string name="acs_text">상승순</string>
+    <string name="transact_text">거래 주문</string>
     <string name="more">더보기V</string>
     <string name="less">간단히 보기</string>
     <string name="back_info">종료하려면 뒤쪽에을 다시 클릭하십시오</string>
@@ -17,7 +18,7 @@
     <string name="income">이자수익</string>
     <string name="rating">신용등급</string>
     <string name="circ_rating">등급</string>
-    <string name="circ_score">:총점</string>
+    <string name="circ_score">: 총점</string>
     <string name="note">음표:</string>
     <string name="note_content">100만원을 기준으로 만기 수익률을 계산함.</string>
     <string name="loading">로드 중...</string>
@@ -25,11 +26,15 @@
     <string name="markey_type">시장 유형:   </string>
     <string name="price_close">종가:   </string>
     <string name="bond_type">채권형:   </string>
-    <string name="returns">생산하다:   </string>
+    <string name="returns">이자율:   </string>
     <string name="t_volume">거래량:   </string>
     <string name="t_value">거래 금액:   </string>
     <string name="res_maturity">잔존만기:   </string>
     <string name="c_rating">신용 등급:   </string>
     <string name="listed_amt">기재된 금액:   </string>
     <string name="currency">원</string>
+    <string name="no_internet">기기가 인터넷에 연결되어 있지 않을 수 있습니다</string>
+    <string name="grade">: 등급</string>
+
+
 </resources>

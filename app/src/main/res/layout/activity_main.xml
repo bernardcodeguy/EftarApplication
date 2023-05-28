@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/background"
-            android:drawableLeft="@drawable/ic_action_name"
+            android:drawableLeft="@drawable/ic_s"
             android:padding="10dp"
             android:layout_margin="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,15 +82,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="@string/domestic_rank_text"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="35dp"
                 android:fontFamily="@font/cabin"
                 android:text="@string/acs_text"
                 android:textSize="18sp" />

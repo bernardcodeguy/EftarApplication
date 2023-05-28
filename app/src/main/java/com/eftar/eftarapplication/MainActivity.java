@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -31,14 +33,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-import org.apache.poi.ss.formula.functions.T;
+
 
 import java.util.ArrayList;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    private TextView txtOrder;
     private AutoCompleteTextView searchBar;
     private Button btnMore;
     private RecyclerView video_recView, rank_recView;
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     String[] suggests2;
     private ArrayAdapter<String> adapter;
 
-
+    private boolean descending = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         asc_btn = findViewById(R.id.asc_btn);
         video_recView = findViewById(R.id.video_recView);
         rank_recView = findViewById(R.id.rank_recView);
-
+        txtOrder = findViewById(R.id.txtOrder);
 
 
         // Show Ranking
@@ -170,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBondListError() {
-                Toast.makeText(myApplication, "Error occured", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -185,7 +190,48 @@ public class MainActivity extends AppCompatActivity {
         asc_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "You clicked Ascending", Toast.LENGTH_SHORT).show();
+                if(descending){
+                    txtOrder.setText(R.string.transact_text);
+
+                    // Sort the list based on the listed_amt in descending order
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Collections.sort(bondList, Comparator.comparingDouble(Bond::getListed_amt).reversed());
+                    }
+
+                    // Show Ranking
+                    rankLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rank_recView.setLayoutManager(rankLayoutManager);
+                    rankAdapter = new RankRecyclerViewAdapter(bondList, getApplicationContext(),numToShow);
+                    rank_recView.setAdapter(rankAdapter);
+
+                    // Notify the adapter of the data set change
+                    rankAdapter.notifyDataSetChanged();
+
+                    descending = false;
+
+                }else{
+                    txtOrder.setText(R.string.acs_text);
+
+                    // Sort the list based on rank using a custom comparator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Collections.sort(bondList, Comparator.comparingInt(Bond::getRank));
+                    }
+
+                    // Show Ranking
+                    rankLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rank_recView.setLayoutManager(rankLayoutManager);
+                    rankAdapter = new RankRecyclerViewAdapter(bondList, getApplicationContext(),numToShow);
+                    rank_recView.setAdapter(rankAdapter);
+
+                    // Notify the adapter of the data set change
+                    rankAdapter.notifyDataSetChanged();
+
+                    descending = true;
+                }
+
+
+
+
             }
         });
     }

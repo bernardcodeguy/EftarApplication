@@ -39,6 +39,7 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
     double maturityRate;
     double redemption;
     int score,creditRatingPoint,maturityRatePoint,interestRatePoint;
+    String grade = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,7 +193,7 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
 
 
 
-                score = (int) ((int) ( maturityRatePoint * 0.4) + (creditRatingPoint * 0.3) + (interestRatePoint * 0.3));
+                score = (int) ((int) ( (creditRatingPoint * 0.5) + (interestRatePoint * 0.5)));
 
                 txtCircScore.setText(String.valueOf(score));
 
@@ -211,6 +212,25 @@ public class IndividualBondDetailActivity extends AppCompatActivity {
                         }
                     }
                 }, 0);
+
+
+
+                if(score >= 90 && score <= 100){
+                    txtCircRating.setText(String.valueOf(1));
+                }else if(score >= 80 && score <= 89){
+                    txtCircRating.setText(String.valueOf(2));
+                }else if(score >= 70 && score <= 79){
+                    txtCircRating.setText(String.valueOf(3));
+                }else if(score >= 60 && score <= 69){
+                    txtCircRating.setText(String.valueOf(4));
+                }else if(score >= 50 && score <= 59){
+                    txtCircRating.setText(String.valueOf(5));
+                }else if(score >= 40 && score <= 49){
+                    txtCircRating.setText(String.valueOf(6));
+                }else if(score >= 0 && score <= 39){
+                    txtCircRating.setText(String.valueOf(7));
+                }
+
 
             }
 
