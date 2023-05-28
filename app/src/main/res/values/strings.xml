@@ -32,6 +32,6 @@
     <string name="c_rating">Credit Rating:   </string>
     <string name="listed_amt">Listed Amount:   </string>
     <string name="currency">KRW</string>
-    <string name="no_internet">Your device might not be connected to internet</string>
+    <string name="no_internet">Bond data server error or device has no internet</string>
     <string name="grade">: Grade</string>
 </resources>
