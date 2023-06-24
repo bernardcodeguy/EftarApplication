@@ -56,15 +56,13 @@ public class SplashActivity extends AppCompatActivity {
     private DatabaseReference myRefKor = FirebaseDatabase.getInstance().getReferenceFromUrl("https://eftar-be95a-default-rtdb.firebaseio.com/").child("kor");
     private Workbook workbook;
     String excelUrlEng = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
-    String excelUrlKor = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/file.xls";
+    String excelUrlKor = "https://github.com/bernardcodeguy/EftarApplication/raw/main/app/src/main/res/filek.xls";
     String urlForExcel;
     private RequestQueue queue;
     JsonObjectRequest request;
     List<Video> videoList = new ArrayList<>();
 
-
     MyApplication myApplication;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +70,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         btnClose = findViewById(R.id.btnClose);
-
-
 
         if (isNetworkAvailable()) {
             btnClose.setVisibility(View.GONE);
@@ -83,15 +79,12 @@ public class SplashActivity extends AppCompatActivity {
             String currentLanguageCode = getResources().getConfiguration().locale.getLanguage();
             regionCode = "KR";
 
-
             // Check if the current language is English
             if (currentLanguageCode.equals("en")) {
                 relevanceLanguage = "en";
             }else{
                 relevanceLanguage = "ko";
             }
-
-
 
             order = "date";
 
@@ -112,7 +105,6 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 }
             });
-
 
             new Thread(new Runnable() {
                 @Override
@@ -161,9 +153,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }).start();
 
-
-
-
         } else {
 
             Toast.makeText(myApplication, R.string.no_internet, Toast.LENGTH_SHORT).show();
@@ -175,7 +164,6 @@ public class SplashActivity extends AppCompatActivity {
                 System.exit(0);
             });
         }
-
     }
 
     private boolean isNetworkAvailable() {
@@ -186,4 +174,3 @@ public class SplashActivity extends AppCompatActivity {
     }
 
  }
-
